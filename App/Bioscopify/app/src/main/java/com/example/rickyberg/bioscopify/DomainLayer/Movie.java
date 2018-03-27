@@ -7,19 +7,19 @@ package com.example.rickyberg.bioscopify.DomainLayer;
 public class Movie {
     private int id;
     private String title;
-    private int age;
+    private boolean adult;
     private int genre;
-    private String Language;
-    private String posterpath;
+    private String language;
+    private String posterPath;
     private String overview;
 
-    public Movie(int id, String title, int age, int genre, String language, String posterpath, String overview) {
+    public Movie(int id, String title, boolean adult, int genre, String language, String posterPath, String overview) {
         this.id = id;
         this.title = title;
-        this.age = age;
+        this.adult = adult;
         this.genre = genre;
-        Language = language;
-        this.posterpath = posterpath;
+        this.language = language;
+        this.posterPath = posterPath;
         this.overview = overview;
     }
 
@@ -39,12 +39,12 @@ public class Movie {
         this.title = title;
     }
 
-    public int getAge() {
-        return age;
+    public boolean getAge() {
+        return adult;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge(boolean age) {
+        this.adult = age;
     }
 
     public int getGenre() {
@@ -56,19 +56,19 @@ public class Movie {
     }
 
     public String getLanguage() {
-        return Language;
+        return language;
     }
 
     public void setLanguage(String language) {
-        Language = language;
+        language = language;
     }
 
     public String getPosterpath() {
-        return posterpath;
+        return posterPath;
     }
 
     public void setPosterpath(String posterpath) {
-        this.posterpath = posterpath;
+        this.posterPath = posterpath;
     }
 
     public String getOverview() {
@@ -84,10 +84,10 @@ public class Movie {
         return "Movie{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", age=" + age +
+                ", age=" + adult +
                 ", genre=" + genre +
-                ", Language='" + Language + '\'' +
-                ", posterpath='" + posterpath + '\'' +
+                ", Language='" + language + '\'' +
+                ", posterpath='" + posterPath + '\'' +
                 ", overview='" + overview + '\'' +
                 '}';
     }
