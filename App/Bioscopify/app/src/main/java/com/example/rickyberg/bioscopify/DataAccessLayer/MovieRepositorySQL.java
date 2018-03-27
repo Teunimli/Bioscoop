@@ -13,10 +13,14 @@ import java.util.ArrayList;
 public class MovieRepositorySQL implements MovieRepositoryInterface {
 
     SQLiteDatabase sqLiteDatabase;
-    //SQLHandler sqlHandler;
+    SqlHandler sqlHandler;
 
     public MovieRepositorySQL() {
-        //sqlHandler = new SQLHandler();
+//        sqlHandler = new SqlHandler(getApplicationContext(),
+//                "Items.db",
+//                null,
+//                2);
+        sqLiteDatabase = sqlHandler.getDatabase();
     }
 
     @Override

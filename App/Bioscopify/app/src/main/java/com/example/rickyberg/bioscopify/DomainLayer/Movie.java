@@ -8,12 +8,12 @@ public class Movie {
     private int id;
     private String title;
     private boolean adult;
-    private int genre;
+    private String genre;
     private String language;
     private String posterPath;
     private String overview;
 
-    public Movie(int id, String title, boolean adult, int genre, String language, String posterPath, String overview) {
+    public Movie(int id, String title, boolean adult, String genre, String language, String posterPath, String overview) {
         this.id = id;
         this.title = title;
         this.adult = adult;
@@ -47,11 +47,11 @@ public class Movie {
         this.adult = age;
     }
 
-    public int getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(int genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
