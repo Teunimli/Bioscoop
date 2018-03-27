@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public interface MovieRepositoryInterface {
 
-    public Movie getMovie(int id);
-    public ArrayList<Movie> getAll();
-    public boolean addMovie(Movie movie);
-    public boolean deleteMovie(int id);
+    Movie getMovie(int id);
+    ArrayList<Movie> getAll();
+    boolean addMovie(Movie movie);
+    boolean deleteMovie(int id);
 
 }
