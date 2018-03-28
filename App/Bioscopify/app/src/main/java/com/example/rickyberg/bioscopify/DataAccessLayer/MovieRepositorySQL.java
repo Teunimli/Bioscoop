@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class MovieRepositorySQL implements MovieRepositoryInterface {
 
-    SQLiteDatabase sqLiteDatabase;
     SqlHandler sqlHandler;
 
     public MovieRepositorySQL() {
@@ -54,7 +53,6 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
 
         cursor.close();
         db.close(); //Hier db.close of de sqlhandler.closeConnection? of beide?
-        sqlHandler.closeConnection(); //beide denk? ze hebben beide een instantie van de DB.
 
         return movie;
     }
@@ -93,18 +91,48 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
 
         cursor.close();
         db.close(); //Hier db.close of de sqlhandler.closeConnection? of beide?
-        sqlHandler.closeConnection(); //beide denk? ze hebben beide een instantie van de DB.
         return Movies;
     }
 
     @Override
     public boolean addMovie(Movie movie) {
-    return false;
+        try {
+            ContentValues values = new ContentValues();
+            values.put("id", movie.getId());
+            values.put("title", movie.getTitle());
+
+            if (movie.getAge() == true) {
+                values.put("adult", 1);
+            }
+            else {
+                values.put("adult", 0);
+            }
+
+            values.put("genre", movie.getGenre());
+            values.put("language", movie.getLanguage());
+            values.put("posterpath", movie.getPosterpath());
+            values.put("overview", movie.getOverview());
+
+            SQLiteDatabase db = sqlHandler.getWritableDatabase();
+            db.insert("Movie", null, values);
+            db.close();
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public boolean deleteMovie(int id) {
-        return false;
-    }
+        try {
 
+
+
+            return true;
+        } catch (Exception e) {
+
+            return false;
+        }
+    }
 }
