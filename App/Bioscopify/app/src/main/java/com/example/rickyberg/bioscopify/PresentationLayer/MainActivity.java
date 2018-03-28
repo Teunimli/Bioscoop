@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
-            selectItem(0);
+            selectItem(R.id.nav_movies);
         }
     }
 
