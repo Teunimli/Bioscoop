@@ -1,6 +1,7 @@
 package com.example.rickyberg.bioscopify.DataAccessLayer;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,11 +19,11 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
 
     SqlHandler sqlHandler;
 
-    public MovieRepositorySQL() {
-//        sqlHandler = new SqlHandler(getApplicationContext(),
-//                "Items.db",
-//                null,
-//                1);
+    public MovieRepositorySQL(Context context) {
+        sqlHandler = new SqlHandler(context,
+                "Items.db",
+                null,
+                1);
         }
 
     @Override
