@@ -1,6 +1,7 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -57,15 +58,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.action_bar_spinner_menu, menu);
-        MenuItem item = menu.findItem(R.id.spinner);
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
+//        getMenuInflater().inflate(R.menu.action_bar_spinner_menu, menu);
+//        MenuItem item = menu.findItem(R.id.spinner);
+//        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+//        spinner.getBackground().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+//
+//
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.spinner_array, R.layout.spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        spinner.setAdapter(adapter);
         return true;
     }
 
@@ -102,9 +105,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_contact:
                 ft.replace(R.id.flMain, new BlankFragment());
                 ft.commit();
-//                Intent intent = new Intent(getApplicationContext(),Contact.class);
-//
-//                startActivity(intent);
                 break;
         }
 
