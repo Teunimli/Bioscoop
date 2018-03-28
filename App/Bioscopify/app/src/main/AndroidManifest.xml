@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PresentationLayer.Contact"></activity>
+        <activity android:name=".PresentationLayer.Contact" />
+        <activity android:name=".PresentationLayer.DetailActivity"></activity>
     </application>
 
 </manifest>

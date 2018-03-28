@@ -51,7 +51,10 @@ public class MainActivity extends AppCompatActivity
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //wat er moet gebeuren naar de klik
+                Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
+                intent.putExtra("MOVIEITEM",items.get(i));
+                intent.putExtra("POSITION",i);
+                startActivity(intent);
             }
         });
     }
@@ -115,6 +118,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onMoviesAvailable(Movie item) {
         items.add(item);
-
+        adapter.notifyDataSetChanged();
     }
 }

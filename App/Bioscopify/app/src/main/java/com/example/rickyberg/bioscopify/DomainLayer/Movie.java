@@ -1,10 +1,12 @@
 package com.example.rickyberg.bioscopify.DomainLayer;
 
+import java.io.Serializable;
+
 /**
  * Created by Michael on 27/03/2018.
  */
 
-public class Movie {
+public class Movie implements Serializable {
     private int id;
     private String title;
     private boolean adult;
