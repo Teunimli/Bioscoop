@@ -1,8 +1,7 @@
 package com.example.rickyberg.bioscopify.DataAccessLayer;
 
 
-import android.graphics.Movie;
-
+import com.example.rickyberg.bioscopify.DomainLayer.Movie;
 import java.util.ArrayList;
 
 /**

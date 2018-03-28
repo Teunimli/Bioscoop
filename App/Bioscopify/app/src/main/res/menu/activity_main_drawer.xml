@@ -6,13 +6,13 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_movies"
-            android:title="Films" />
+            android:title="Movies" />
         <item
             android:id="@+id/nav_favorite"
-            android:title="Favorieten" />
+            android:title="Favorite" />
         <item
             android:id="@+id/nav_about"
-            android:title="Over Ons" />
+            android:title="About Us" />
         <item
             android:id="@+id/nav_contact"
             android:title="Contact" />

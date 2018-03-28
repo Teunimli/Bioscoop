@@ -33,12 +33,11 @@ public class SqlHandler extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Item");
         this.onCreate(sqLiteDatabase);
     }
-    public SQLiteDatabase getDatabase()
-    {
+    public SQLiteDatabase getDatabase() {
+        db = this.getWritableDatabase();
         return db;
     }
-    public void closeConnection()
-    {
+    public void closeConnection() {
         db.close();
     }
 }
