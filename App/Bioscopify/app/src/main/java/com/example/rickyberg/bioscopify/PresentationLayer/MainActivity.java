@@ -11,31 +11,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.Spinner;
 
-import com.example.rickyberg.bioscopify.ApplicationLayer.MovieItemListener;
-import com.example.rickyberg.bioscopify.DataAccessLayer.MovieAsyncTask;
-import com.example.rickyberg.bioscopify.DomainLayer.Movie;
 import com.example.rickyberg.bioscopify.R;
 
-import java.util.ArrayList;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,MovieItemListener {
 
-    private ArrayList<Movie> items = new ArrayList<>();
-    private GridView gridView;
-    private ArrayAdapter<Movie> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,28 +37,12 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getGridItems();
-        gridView = (GridView) findViewById(R.id.movieListGrid);
-        adapter = new movieListAdapter(this,items);
-        gridView.setAdapter(adapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
-                intent.putExtra("MOVIEITEM",items.get(i));
-                intent.putExtra("POSITION",i);
-                startActivity(intent);
-            }
-        });
+        if (savedInstanceState == null) {
+            selectItem(0);
+        }
     }
 
-    private void getGridItems()
-    {
-        //Aanroepen AsyncTask
-        MovieAsyncTask task = new MovieAsyncTask(this);
-        String[] urls = new String[] {"https://api.themoviedb.org/3/movie/now_playing?api_key=8089749884abc3ed32377451b7e348fd&language=nl-NL&page=1&region=NL"};
-        task.execute(urls);
-    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -98,31 +73,42 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        selectItem(id);
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    public void selectItem(int id)
+    {
+        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         switch (id)
         {
             case R.id.nav_movies:
                 //clicked films
+                ft.replace(R.id.flMain, new HomeFragment());
+                ft.commit();
                 break;
             case R.id.nav_favorite:
                 //clicked favorieten
+                ft.replace(R.id.flMain, new FavoriteFragment());
+                ft.commit();
                 break;
             case R.id.nav_about:
                 //clicked about
                 break;
             case R.id.nav_contact:
                 Intent intent = new Intent(getApplicationContext(),Contact.class);
+
                 startActivity(intent);
                 break;
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+
     }
 
     @Override
-    public void onMoviesAvailable(Movie item) {
-        items.add(item);
-        adapter.notifyDataSetChanged();
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
