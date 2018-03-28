@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +66,6 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
         String[] urls = new String[] {"https://api.themoviedb.org/3/movie/now_playing?api_key=8089749884abc3ed32377451b7e348fd&language=nl-NL&page=1&region=NL"};
         task.execute(urls);
     }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

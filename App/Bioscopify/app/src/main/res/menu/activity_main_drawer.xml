@@ -6,19 +6,21 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_movies"
-            android:icon="@drawable/ic_movie_black"
+            android:icon="@drawable/ic_movie"
+            android:iconTint="@color/colorAccent"
+            android:iconTintMode="src_over"
             android:title="Movies" />
         <item
             android:id="@+id/nav_favorite"
-            android:icon="@drawable/ic_favorite_black"
+            android:icon="@drawable/ic_favorite"
             android:title="Favorite" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/ic_info_black_24dp"
+            android:icon="@drawable/ic_info"
             android:title="About Us" />
         <item
             android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_contact_phone_black_24dp"
+            android:icon="@drawable/ic_contact"
             android:title="Contact" />
     </group>
 

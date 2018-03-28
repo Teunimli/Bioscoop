@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.setCheckedItem(R.id.nav_movies);
         if (savedInstanceState == null) {
             selectItem(R.id.nav_movies);
         }
@@ -99,9 +100,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //clicked about
                 break;
             case R.id.nav_contact:
-                Intent intent = new Intent(getApplicationContext(),Contact.class);
-
-                startActivity(intent);
+                ft.replace(R.id.flMain, new BlankFragment());
+                ft.commit();
+//                Intent intent = new Intent(getApplicationContext(),Contact.class);
+//
+//                startActivity(intent);
                 break;
         }
 
