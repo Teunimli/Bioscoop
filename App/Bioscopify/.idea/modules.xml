@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Bioscopify.iml" filepath="$PROJECT_DIR$/Bioscopify.iml" />
-      <module fileurl="file://C:\Users\Kevin\Documents\GitHub\Bioscoop\App\Bioscopify\Bioscopify.iml" filepath="C:\Users\Kevin\Documents\GitHub\Bioscoop\App\Bioscopify\Bioscopify.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Kevin\Documents\GitHub\Bioscoop\App\Bioscopify\app\app.iml" filepath="C:\Users\Kevin\Documents\GitHub\Bioscoop\App\Bioscopify\app\app.iml" />
     </modules>
   </component>
 </project>
