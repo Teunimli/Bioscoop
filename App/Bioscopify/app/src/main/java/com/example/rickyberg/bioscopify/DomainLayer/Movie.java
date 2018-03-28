@@ -1,5 +1,7 @@
 package com.example.rickyberg.bioscopify.DomainLayer;
 
+import java.util.ArrayList;
+
 /**
  * Created by Michael on 27/03/2018.
  */
@@ -8,12 +10,12 @@ public class Movie {
     private int id;
     private String title;
     private boolean adult;
-    private String genre;
+    private ArrayList<String> genre;
     private String language;
     private String posterPath;
     private String overview;
 
-    public Movie(int id, String title, boolean adult, String genre, String language, String posterPath, String overview) {
+    public Movie(int id, String title, boolean adult, ArrayList<String> genre, String language, String posterPath, String overview) {
         this.id = id;
         this.title = title;
         this.adult = adult;
@@ -47,11 +49,11 @@ public class Movie {
         this.adult = age;
     }
 
-    public String getGenre() {
+    public ArrayList<String> getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(ArrayList<String> genre) {
         this.genre = genre;
     }
 
@@ -85,7 +87,7 @@ public class Movie {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", age=" + adult +
-                ", genre=" + genre +
+                ", genre=" + genre.toString() +
                 ", Language='" + language + '\'' +
                 ", posterpath='" + posterPath + '\'' +
                 ", overview='" + overview + '\'' +

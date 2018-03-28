@@ -1,7 +1,9 @@
 package com.example.rickyberg.bioscopify.ApplicationLayer;
 
-import android.graphics.Movie;
 import android.util.Log;
+
+import com.example.rickyberg.bioscopify.DomainLayer.Movie;
+import com.example.rickyberg.bioscopify.DomainLayer.MovieGenres;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,9 +19,7 @@ public abstract class JSONMovieParser {
 
     private static final String TAG = "JSONMovieParser";
 
-    public static ArrayList<Movie> getMovies(String result){
-
-
+    public static void getMovies(String result, MovieItemListener listener){
 
         ArrayList<Movie> list = new ArrayList<>();
         try {
@@ -38,12 +38,11 @@ public abstract class JSONMovieParser {
                 ArrayList<String> genres = new ArrayList<String>();
                 JSONArray arrGenres = obj.getJSONArray("genre_ids");
                 for( int i = 0; i < arrGenres.length(); i++) {
-                    genres.add((String) arrGenres.get(i));
+                    genres.add(MovieGenres.getList().get(arrGenres.get(i)));
                 }
-
+                Movie movie = new Movie(id, title, adult,genres, language, posterpath, overview);
+                listener.onMoviesAvailable(movie);
             }
-
-
         } catch(Exception e) {
             Log.i(TAG, "== ERROR something went wrong while trying to convert to JSON ==");
             Log.d("", e.toString());

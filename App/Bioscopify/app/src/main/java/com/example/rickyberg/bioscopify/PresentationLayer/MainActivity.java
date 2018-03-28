@@ -17,14 +17,14 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
 
-import com.example.rickyberg.bioscopify.ApplicationLayer.itemListener;
+import com.example.rickyberg.bioscopify.ApplicationLayer.MovieItemListener;
 import com.example.rickyberg.bioscopify.DomainLayer.Movie;
 import com.example.rickyberg.bioscopify.R;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,itemListener {
+        implements NavigationView.OnNavigationItemSelectedListener,MovieItemListener {
 
     private ArrayList<Movie> items = new ArrayList<>();
     private GridView gridView;
