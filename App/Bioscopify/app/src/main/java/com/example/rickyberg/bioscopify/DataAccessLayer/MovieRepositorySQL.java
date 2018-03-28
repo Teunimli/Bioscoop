@@ -150,11 +150,13 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
     @Override
     public boolean deleteMovie(int movieId) {
         try {
-            String query = "DELETE FROM Movie WHERE id = '" + movieId + "'";
+          // String query = "DELETE FROM Movie WHERE id = '" + movieId + "'";
+
 
             SQLiteDatabase db = sqlHandler.getWritableDatabase();
-            Cursor cursor = db.rawQuery(query, null);
+           // Cursor cursor = db.rawQuery(query, null);
 
+            db.delete("Movie", "id = '" + movieId + "'",null);
             db.close();
 
             return true;
