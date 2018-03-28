@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.rickyberg.bioscopify.PresentationLayer.Contact"
+    tools:showIn="@layout/app_bar_contact">
+
+    <Button
+        android:id="@+id/buttonCall"
+        android:layout_width="192dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Call 0658830782"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/txt_sunday" />
+
+    <TextView
+        android:id="@+id/txt_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Location:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map" />
+
+    <TextView
+        android:id="@+id/txt_location_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Hogeschoollaan 1 Breda"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_location"
+        app:layout_constraintTop_toBottomOf="@+id/map" />
+
+    <TextView
+        android:id="@+id/txt_openinghours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Opening hours: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_location" />
+
+    <TextView
+        android:id="@+id/txt_monday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Mondag: 09:00 - 23:00"
+        app:layout_constraintStart_toEndOf="@+id/txt_openinghours"
+        app:layout_constraintTop_toBottomOf="@+id/txt_location_address" />
+
+    <TextView
+        android:id="@+id/txt_tueaday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Tuesday: 09:00 - 23:00"
+        app:layout_constraintStart_toEndOf="@+id/txt_openinghours"
+        app:layout_constraintTop_toBottomOf="@+id/txt_monday" />
+
+    <TextView
+        android:id="@+id/txt_wednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Wednesday: 09:00 - 23:00"
+        app:layout_constraintStart_toEndOf="@+id/txt_openinghours"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tueaday" />
+
+    <TextView
+        android:id="@+id/txt_thursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Thursday: 09:00 - 23:00"
+        app:layout_constraintStart_toEndOf="@+id/txt_openinghours"
+        app:layout_constraintTop_toBottomOf="@+id/txt_wednesday" />
+
+    <TextView
+        android:id="@+id/txt_friday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Friday: 09:00 - 23:00"
+        app:layout_constraintStart_toEndOf="@+id/txt_openinghours"
+        app:layout_constraintTop_toBottomOf="@+id/txt_thursday" />
+
+    <TextView
+        android:id="@+id/txt_saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Saturday: 09:00 - 23:00"
+        app:layout_constraintStart_toEndOf="@+id/txt_openinghours"
+        app:layout_constraintTop_toBottomOf="@+id/txt_friday" />
+
+    <TextView
+        android:id="@+id/txt_sunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Sunday: 09:00 - 23:00"
+        app:layout_constraintStart_toEndOf="@+id/txt_openinghours"
+        app:layout_constraintTop_toBottomOf="@+id/txt_saturday" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Phonenumber:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_sunday" />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
+
+
+</android.support.constraint.ConstraintLayout>
