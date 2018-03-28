@@ -31,8 +31,12 @@ public abstract class JSONMovieParser {
                 int id = obj.getInt("id");
                 String title = obj.getString("title");
                 boolean adult = obj.getBoolean("adult");
-                String language = obj.getString("language");
-                String posterpath = "https://image.tmdb.org/t/p/w500/" + obj.getString("posterpath");
+                String language = obj.getString("original_language");
+                String posterpath = "https://image.tmdb.org/t/p/w500/" + obj.getString("poster_path");
+                if(posterpath.contains("null"))
+                {
+                    posterpath = "http://www.nextuz.com/Content/images/no-image/no-image.jpg" ;
+                }
                 String overview = obj.getString("overview");
 
                 ArrayList<String> genres = new ArrayList<String>();

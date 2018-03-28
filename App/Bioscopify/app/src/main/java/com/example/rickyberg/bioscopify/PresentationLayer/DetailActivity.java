@@ -30,7 +30,7 @@ private TextView overview;
         adult = (TextView) findViewById(R.id.ageTv);
         language = (TextView) findViewById(R.id.languageTv);
         genre = (TextView) findViewById(R.id.genreTv);
-        time = (TextView) findViewById(R.id.timeTv);
+        time = (TextView) findViewById(R.id.movietimeTV);
         overview = (TextView) findViewById(R.id.overviewTv);
         Picasso.with(this).load(item.getPosterpath()).into(poster);
         title.setText(item.getTitle());
@@ -43,7 +43,7 @@ private TextView overview;
             adult.setText("Age: 0-17");
         }
         language.setText(item.getLanguage());
-        genre.setText(item.getGenre());
+        genre.setText(item.getGenre().toString());
         if (position <=3)
         {
             time.setText("10:00");

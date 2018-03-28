@@ -18,6 +18,7 @@ import android.widget.GridView;
 import android.widget.Spinner;
 
 import com.example.rickyberg.bioscopify.ApplicationLayer.MovieItemListener;
+import com.example.rickyberg.bioscopify.DataAccessLayer.MovieAsyncTask;
 import com.example.rickyberg.bioscopify.DomainLayer.Movie;
 import com.example.rickyberg.bioscopify.R;
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        getGridItems();
         gridView = (GridView) findViewById(R.id.movieListGrid);
         adapter = new movieListAdapter(this,items);
         gridView.setAdapter(adapter);
@@ -62,6 +64,9 @@ public class MainActivity extends AppCompatActivity
     private void getGridItems()
     {
         //Aanroepen AsyncTask
+        MovieAsyncTask task = new MovieAsyncTask(this);
+        String[] urls = new String[] {"https://api.themoviedb.org/3/movie/now_playing?api_key=8089749884abc3ed32377451b7e348fd&language=nl-NL&page=1&region=NL"};
+        task.execute(urls);
     }
     @Override
     public void onBackPressed() {
