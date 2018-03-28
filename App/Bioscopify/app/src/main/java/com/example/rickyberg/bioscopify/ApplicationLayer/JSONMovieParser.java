@@ -47,7 +47,5 @@ public abstract class JSONMovieParser {
             Log.i(TAG, "== ERROR something went wrong while trying to convert to JSON ==");
             Log.d("", e.toString());
         }
-
-        return list;
     }
 }
