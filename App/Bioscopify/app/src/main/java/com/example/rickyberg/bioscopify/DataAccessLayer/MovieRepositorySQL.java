@@ -85,7 +85,7 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
 
 
             String genre = cursor.getString(cursor.getColumnIndex("genre"));
-            String[] genreParts = genre.split("");
+            String[] genreParts = genre.split("-");
 
             ArrayList<String> genreList = new ArrayList<>();
 
@@ -124,7 +124,8 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
             String genreString = "";
 
             for (int i = 0; i < movie.getGenre().size(); i++){
-                genreString+= movie.getGenre().get(i);
+                genreString += movie.getGenre().get(i);
+                genreString += "-";
             }
 
             ContentValues values = new ContentValues();
