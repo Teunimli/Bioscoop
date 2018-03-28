@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rickyberg.bioscopify.PresentationLayer.PayOrderActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <RelativeLayout
+        android:layout_width="344dp"
+        android:layout_height="495dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="38dp"
+            android:text="Choose your payment method"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/ideal_iv"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/textView"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="79dp"
+            android:src="@drawable/ideal" />
+
+        <ImageView
+            android:id="@+id/paypal_iv"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignStart="@+id/ideal_iv"
+            android:layout_below="@+id/ideal_iv"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/paypal_logo" />
+
+        <ImageView
+            android:id="@+id/mastercard_iv"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignStart="@+id/paypal_iv"
+            android:layout_below="@+id/paypal_iv"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/mastercard" />
+
+        <Button
+            android:id="@+id/ideal_btn"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_alignTop="@+id/ideal_iv"
+            android:layout_marginEnd="34dp"
+            android:layout_marginTop="11dp"
+            android:onClick="PaymentClick"
+            android:text="IDeal" />
+
+        <Button
+            android:id="@+id/paypal_btn"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/Mastercard_btn"
+            android:layout_alignTop="@+id/paypal_iv"
+            android:layout_marginTop="11dp"
+            android:onClick="PaymentClick"
+            android:text="PayPal" />
+
+        <Button
+            android:id="@+id/Mastercard_btn"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/ideal_btn"
+            android:layout_alignTop="@+id/mastercard_iv"
+            android:layout_marginTop="13dp"
+            android:onClick="PaymentClick"
+            android:text="Mastercard" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
