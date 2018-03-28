@@ -1,5 +1,6 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -102,7 +103,8 @@ public class MainActivity extends AppCompatActivity
                 //clicked about
                 break;
             case R.id.nav_contact:
-                //clicked contact
+                Intent intent = new Intent(getApplicationContext(),Contact.class);
+                startActivity(intent);
                 break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
