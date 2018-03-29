@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.example.rickyberg.bioscopify.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,15 +25,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragment extends Fragment implements OnMapReadyCallback {
+public class ContactFragment extends Fragment implements OnMapReadyCallback {
 
 
-    public BlankFragment() {
+    public ContactFragment() {
         // Required empty public constructor
     }
 
     private Button button;
-    private ImageView iv;
     View rootView;
     GoogleMap mMap;
 
@@ -47,7 +45,6 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback {
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
 
         button = (Button) rootView.findViewById(R.id.buttonCall);
-        //iv = (ImageView) findViewById(R.id.image_cinema);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
