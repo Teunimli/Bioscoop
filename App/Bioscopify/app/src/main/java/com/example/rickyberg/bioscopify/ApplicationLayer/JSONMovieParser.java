@@ -33,6 +33,11 @@ public abstract class JSONMovieParser {
                 boolean adult = obj.getBoolean("adult");
                 String language = obj.getString("original_language");
                 String posterpath = "https://image.tmdb.org/t/p/w500/" + obj.getString("poster_path");
+                String backdrop = "https://image.tmdb.org/t/p/w500/" + obj.getString("backdrop_path");
+                if(backdrop.contains("null"))
+                {
+                    backdrop = "noimage" ;
+                }
                 if(posterpath.contains("null"))
                 {
                     posterpath = "http://www.nextuz.com/Content/images/no-image/no-image.jpg" ;
@@ -44,7 +49,7 @@ public abstract class JSONMovieParser {
                 for( int i = 0; i < arrGenres.length(); i++) {
                     genres.add(MovieGenres.getList().get(arrGenres.get(i)));
                 }
-                Movie movie = new Movie(id, title, adult,genres, language, posterpath, overview);
+                Movie movie = new Movie(id, title, adult,genres, language, posterpath, overview, backdrop);
                 listener.onMoviesAvailable(movie);
             }
         } catch(Exception e) {

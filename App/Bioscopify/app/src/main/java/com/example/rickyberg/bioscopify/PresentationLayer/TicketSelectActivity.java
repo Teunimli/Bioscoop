@@ -19,20 +19,17 @@ public class TicketSelectActivity extends AppCompatActivity {
 
     private ImageView posterIv;
     private TextView titleTv;
-    private EditText juniorTicketsEt;
-    private EditText normalTicketsEt;
-    private EditText seniorTicketsEt;
     private TextView totalPriceTv;
     private Button selectSeatsButton;
     private Movie selectedMovie;
     private String time;
 
-    private int nrOfJuniorTickets; // veranderen naar int
+    private int nrOfJuniorTickets;
     private int nrOfNormalTickets;
     private int nrOfSeniorTickets;
     private double totalPrice;
     private int nrOfTotalSeatsAvailable = 48;
-    private int nrOfTotalSeatsSelected = 0;
+    private int nrOfTotalTicketsSelected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +42,6 @@ public class TicketSelectActivity extends AppCompatActivity {
 
         this.posterIv = (ImageView) findViewById(R.id.imageView);
         this.titleTv = (TextView) findViewById(R.id.titleTv);
-        this.juniorTicketsEt = (EditText) findViewById(R.id.juniorTicketsEt);
-        this.normalTicketsEt = (EditText) findViewById(R.id.normalTicketsEt);
-        this.seniorTicketsEt = (EditText) findViewById(R.id.seniorTicketsEt);
         this.totalPriceTv = (TextView) findViewById(R.id.totalPriceTv);
         this.selectSeatsButton = (Button) findViewById(R.id.btnTicketSelect);
         selectSeatsButton.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +49,7 @@ public class TicketSelectActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SeatSelectActivity.class);
                 intent.putExtra("MOVIE", selectedMovie);
-                intent.putExtra("SEATS",nrOfTotalSeatsSelected);
+                intent.putExtra("SEATS",nrOfTotalTicketsSelected);
                 intent.putExtra("PRICE", totalPrice);
                 startActivity(intent);
             }
@@ -64,42 +58,17 @@ public class TicketSelectActivity extends AppCompatActivity {
         Picasso.with(this).load(selectedMovie.getPosterpath()).into(posterIv);
         titleTv.setText(selectedMovie.getTitle());
 
-        TextWatcher tw = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
+    }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    private void updateTickets(){
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if(!editable.toString().equals("")) {
-                    if (seatsAvailable(Integer.parseInt(editable.toString()))) {
-                        nrOfNormalTickets = Integer.parseInt(editable.toString());
-                        nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
-                        updateTotalPrice();
-                    } else {
-                        nrOfNormalTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected;
-                        editable.clear();
-                        CharSequence seq = Integer.toString(nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected);
-                        editable.append(seq);
-                        updateTotalPrice();
-                    }
-                }
-            }
-        };
-        juniorTicketsEt.addTextChangedListener(tw);
-        normalTicketsEt.addTextChangedListener(tw);
-        seniorTicketsEt.addTextChangedListener(tw);
+        nrOfTotalTicketsSelected = nrOfJuniorTickets + nrOfNormalTickets + nrOfSeniorTickets;
     }
 
 
     private boolean seatsAvailable(int extraSeats){
-        if (nrOfTotalSeatsSelected + extraSeats <= nrOfTotalSeatsAvailable){
+        if (nrOfTotalTicketsSelected + extraSeats <= nrOfTotalSeatsAvailable){
             return true;
         }
         else {

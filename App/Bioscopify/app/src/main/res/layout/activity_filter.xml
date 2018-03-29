@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rickyberg.bioscopify.PresentationLayer.FilterActivity">
+
+    <ScrollView
+        android:id="@+id/svFilter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layoutconstraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <RadioButton
+                android:id="@+id/rbRomance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Romance"
+                app:layout_constraintTop_toBottomOf="@+id/rbMystery"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <RadioButton
+                android:id="@+id/rbMystery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mystery"
+                app:layout_constraintStart_toStartOf="@+id/rbRomance"
+                app:layout_constraintTop_toBottomOf="@+id/rbHistory" />
+
+            <RadioButton
+                android:id="@+id/rbAdventure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adventure"
+                app:layout_constraintStart_toStartOf="@+id/rbAction"
+                app:layout_constraintTop_toBottomOf="@+id/rbAction" />
+
+            <RadioButton
+                android:id="@+id/rbAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Action"
+                app:layout_constraintTop_toBottomOf="@+id/tvGenre"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/tvGenre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Genre"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioButton
+                android:id="@+id/rbScience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Science Fiction"
+                app:layout_constraintStart_toStartOf="@+id/rbThriller"
+                tools:layout_editor_absoluteY="171dp" />
+
+            <RadioButton
+                android:id="@+id/rbAnimation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Animation"
+                app:layout_constraintStart_toStartOf="@+id/rbAdventure"
+                app:layout_constraintTop_toBottomOf="@+id/rbAdventure" />
+
+            <RadioButton
+                android:id="@+id/rbComedy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comedy"
+                app:layout_constraintStart_toStartOf="@+id/rbCrime"
+                tools:layout_editor_absoluteY="56dp" />
+
+            <RadioButton
+                android:id="@+id/rbCrime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crime"
+                app:layout_constraintStart_toStartOf="@+id/rbDocumentary"
+                app:layout_constraintTop_toBottomOf="@+id/rbComedy" />
+
+            <RadioButton
+                android:id="@+id/rbDocumentary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Documentary"
+                app:layout_constraintTop_toBottomOf="@+id/rbCrime"
+                tools:layout_editor_absoluteX="124dp" />
+
+            <RadioButton
+                android:id="@+id/rbDrama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drama"
+                app:layout_constraintStart_toStartOf="@+id/rbFamily"
+                tools:layout_editor_absoluteY="56dp" />
+
+            <RadioButton
+                android:id="@+id/rbFamily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Family"
+                app:layout_constraintStart_toStartOf="@+id/rbFantasy"
+                app:layout_constraintTop_toBottomOf="@+id/rbDrama" />
+
+            <RadioButton
+                android:id="@+id/rbFantasy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fantasy"
+                app:layout_constraintTop_toBottomOf="@+id/rbFamily"
+                tools:layout_editor_absoluteX="246dp" />
+
+            <RadioButton
+                android:id="@+id/rbHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="History"
+                app:layout_constraintStart_toStartOf="@+id/rbMystery"
+                tools:layout_editor_absoluteY="170dp" />
+
+            <RadioButton
+                android:id="@+id/rbThriller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thriller"
+                app:layout_constraintStart_toStartOf="@+id/rbTVmovie"
+                app:layout_constraintTop_toBottomOf="@+id/rbScience" />
+
+            <RadioButton
+                android:id="@+id/rbTVmovie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TV Movie"
+                app:layout_constraintTop_toBottomOf="@+id/rbThriller"
+                tools:layout_editor_absoluteX="124dp" />
+
+            <RadioButton
+                android:id="@+id/rbWar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="War"
+                tools:layout_editor_absoluteX="252dp"
+                tools:layout_editor_absoluteY="171dp" />
+
+            <RadioButton
+                android:id="@+id/rbWestern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Western"
+                tools:layout_editor_absoluteX="252dp"
+                tools:layout_editor_absoluteY="203dp" />
+
+            <Button
+                android:id="@+id/btApply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apply"
+                tools:layout_editor_absoluteX="128dp"
+                tools:layout_editor_absoluteY="287dp" />
+
+            <TextView
+                android:id="@+id/tvReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Reset"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
