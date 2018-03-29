@@ -49,7 +49,7 @@ public class TicketSelectActivity extends AppCompatActivity {
         this.normalTicketsEt = (EditText) findViewById(R.id.normalTicketsEt);
         this.seniorTicketsEt = (EditText) findViewById(R.id.seniorTicketsEt);
         this.totalPriceTv = (TextView) findViewById(R.id.totalPriceTv);
-        this.selectSeatsButton = (Button) findViewById(R.id.button2);
+        this.selectSeatsButton = (Button) findViewById(R.id.btnTicketSelect);
         selectSeatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
