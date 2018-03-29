@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/bioscopify_logo_resized"
@@ -12,11 +13,9 @@
         android:roundIcon="@drawable/bioscopify_logo_resized"
         android:supportsRtl="true"
         android:theme="@style/CustomActionBarTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBseopqdTQGL4sOnneFYlsesjvJNsQl5KI" />
-
 
         <activity
             android:name=".PresentationLayer.MainActivity"
@@ -28,12 +27,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PresentationLayer.Contact"
-                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".PresentationLayer.Contact"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PresentationLayer.DetailActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PresentationLayer.MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PresentationLayer.MainActivity" />
         </activity>
+        <activity android:name=".PresentationLayer.TicketSelectActivity" />
+        <activity android:name=".PresentationLayer.TicketSelectActivity"></activity>
     </application>
 
 </manifest>

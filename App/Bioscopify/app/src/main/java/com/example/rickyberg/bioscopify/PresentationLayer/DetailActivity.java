@@ -1,5 +1,6 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,11 +20,13 @@ private TextView language;
 private TextView genre;
 private TextView time;
 private TextView overview;
+private Movie item;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Movie item = (Movie) getIntent().getSerializableExtra("MOVIEITEM");
+        item = (Movie) getIntent().getSerializableExtra("MOVIEITEM");
         int position = (int)getIntent().getSerializableExtra("POSITION");
         poster = (ImageView) findViewById(R.id.posterTv);
         title = (TextView) findViewById(R.id.titleTv);
@@ -78,5 +81,8 @@ private TextView overview;
     public void onClick(View view)
     {
         //TICKET SELECT SCREEN
+        Intent intent = new Intent(getApplicationContext(), TicketSelectActivity.class);
+        intent.putExtra("MOVIEITEM", item);
+        startActivity(intent);
     }
 }
