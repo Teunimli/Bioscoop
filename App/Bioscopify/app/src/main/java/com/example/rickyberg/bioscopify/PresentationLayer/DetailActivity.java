@@ -27,6 +27,7 @@ private TextView time;
 private TextView overview;
 private FloatingActionButton floatingActionButton;
 private boolean isFavorite;
+private ImageView backdropImageview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,12 @@ private boolean isFavorite;
         genre = (TextView) findViewById(R.id.genreTv);
         time = (TextView) findViewById(R.id.movietimeTV);
         overview = (TextView) findViewById(R.id.overviewTv);
+        backdropImageview = (ImageView) findViewById(R.id.ivBackdropDetailed);
         Picasso.with(this).load(item.getPosterpath()).into(poster);
+        if(!item.getBackdrop().equals("noimage"))
+        {
+            Picasso.with(this).load(item.getBackdrop()).into(backdropImageview);
+        }
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fabDetailFavorite);
         checkIfFavorite();
         title.setText(item.getTitle());

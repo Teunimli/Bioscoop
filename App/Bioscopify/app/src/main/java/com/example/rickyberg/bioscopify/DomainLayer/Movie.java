@@ -1,8 +1,7 @@
 package com.example.rickyberg.bioscopify.DomainLayer;
 
-import java.util.ArrayList;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Michael on 27/03/2018.
@@ -15,9 +14,10 @@ public class Movie implements Serializable {
     private ArrayList<String> genre;
     private String language;
     private String posterPath;
+    private String backdrop;
     private String overview;
 
-    public Movie(int id, String title, boolean adult, ArrayList<String> genre, String language, String posterPath, String overview) {
+    public Movie(int id, String title, boolean adult, ArrayList<String> genre, String language, String posterPath, String overview, String backdrop) {
         this.id = id;
         this.title = title;
         this.adult = adult;
@@ -25,7 +25,9 @@ public class Movie implements Serializable {
         this.language = language;
         this.posterPath = posterPath;
         this.overview = overview;
+        this.backdrop = backdrop;
     }
+
 
     public int getId() {
         return id;
@@ -81,6 +83,14 @@ public class Movie implements Serializable {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public String getBackdrop() {
+        return backdrop;
+    }
+
+    public void setBackdrop(String backdrop) {
+        this.backdrop = backdrop;
     }
 
     @Override

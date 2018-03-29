@@ -22,7 +22,7 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
         sqlHandler = new SqlHandler(context,
                 "Items.db",
                 null,
-                2);
+                3);
         }
 
     @Override
@@ -42,6 +42,7 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
         String genre = cursor.getString(cursor.getColumnIndex("genre"));
         String[] genreParts = genre.split("");
 
+
         ArrayList<String> genreList = new ArrayList<>();
 
         for (int i = 0; i > genreParts.length; i++){
@@ -58,8 +59,8 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
             adult = false;
         }
 
-
-        Movie movie = new Movie(id, title, adult, genreList, language, posterpath, overview);
+        String backdrop = cursor.getString(cursor.getColumnIndex("backdrop"));
+        Movie movie = new Movie(id, title, adult, genreList, language, posterpath, overview, backdrop);
 
         cursor.close();
         db.close();
@@ -103,8 +104,9 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
             else {
                 adult = false;
             }
+            String backdrop = cursor.getString(cursor.getColumnIndex("backdrop"));
 
-            Movies.add(new Movie(id, title, adult, genreList, language, posterpath, overview));
+            Movies.add(new Movie(id, title, adult, genreList, language, posterpath, overview, backdrop));
             cursor.moveToNext();
         }
 
@@ -137,6 +139,7 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
             values.put("language", movie.getLanguage());
             values.put("posterpath", movie.getPosterpath());
             values.put("overview", movie.getOverview());
+            values.put("backdrop", movie.getBackdrop());
 
             SQLiteDatabase db = sqlHandler.getWritableDatabase();
             db.insert("Movie", null, values);

@@ -24,7 +24,8 @@ public class SqlHandler extends SQLiteOpenHelper {
                 "\t`genre`\tTEXT,\n" +
                 "\t`language`\tTEXT,\n" +
                 "\t`posterpath`\tTEXT,\n" +
-                "\t`overview`\tTEXT\n" +
+                "\t`overview`\tTEXT, \n" +
+                "\t`backdrop`\tTEXT\n" +
                 ");");
     }
 
