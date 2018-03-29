@@ -21,6 +21,7 @@ private TextView genre;
 private TextView time;
 private TextView overview;
 private Movie item;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
