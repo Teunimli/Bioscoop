@@ -26,31 +26,31 @@ public class ConfirmationActivity extends AppCompatActivity {
         title.setText(item.getTitle());
         if (position <=3)
         {
-            time.setText("10:00");
+            this.time.setText("10:00");
         }
         else if(position <=6)
         {
-            time.setText("12:00");
+            this.time.setText("12:00");
         }
         else if (position <= 9)
         {
-            time.setText("14:00");
+            this.time.setText("14:00");
         }
         else if (position <= 12)
         {
-            time.setText("16:00");
+            this.time.setText("16:00");
         }
         else if (position <= 15)
         {
-            time.setText("18:00");
+            this.time.setText("18:00");
         }
         else if (position <= 18)
         {
-            time.setText("20:00");
+            this.time.setText("20:00");
         }
         else
         {
-            time.setText("22:00");
+            this.time.setText("22:00");
         }
 
     }
