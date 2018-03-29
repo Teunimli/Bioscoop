@@ -18,7 +18,7 @@ public class SqlHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE `Movie` (\n" +
-                "\t`id`\tINTEGER NOT NULL,\n" +
+                "\t`id`\tINTEGER PRIMARY KEY,\n" +
                 "\t`title`\tTEXT,\n" +
                 "\t`adult`\tInteger,\n" +
                 "\t`genre`\tTEXT,\n" +
@@ -30,7 +30,7 @@ public class SqlHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Item");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Movie");
         this.onCreate(sqLiteDatabase);
     }
     public SQLiteDatabase getDatabase() {
@@ -38,6 +38,7 @@ public class SqlHandler extends SQLiteOpenHelper {
         return db;
     }
     public void closeConnection() {
+
         db.close();
     }
 }

@@ -2,7 +2,6 @@ package com.example.rickyberg.bioscopify.DataAccessLayer;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -23,7 +22,7 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
         sqlHandler = new SqlHandler(context,
                 "Items.db",
                 null,
-                1);
+                2);
         }
 
     @Override
@@ -32,6 +31,7 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
         String query = "SELECT * FROM Movie WHERE id = '" + movieId + "'";
         SQLiteDatabase db = sqlHandler.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
 
         int id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
         String title = cursor.getString(cursor.getColumnIndex("title"));
@@ -62,7 +62,7 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
         Movie movie = new Movie(id, title, adult, genreList, language, posterpath, overview);
 
         cursor.close();
-        db.close(); //Hier db.close of de sqlhandler.closeConnection? of beide?
+        db.close();
 
         return movie;
     }
@@ -109,7 +109,7 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
         }
 
         cursor.close();
-        db.close(); //Hier db.close of de sqlhandler.closeConnection? of beide?
+        db.close();
         return Movies;
     }
 
@@ -151,11 +151,7 @@ public class MovieRepositorySQL implements MovieRepositoryInterface {
     @Override
     public boolean deleteMovie(int movieId) {
         try {
-          // String query = "DELETE FROM Movie WHERE id = '" + movieId + "'";
-
-
             SQLiteDatabase db = sqlHandler.getWritableDatabase();
-           // Cursor cursor = db.rawQuery(query, null);
 
             db.delete("Movie", "id = '" + movieId + "'",null);
             db.close();

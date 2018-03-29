@@ -8,12 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.example.rickyberg.bioscopify.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,15 +26,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragment extends Fragment implements OnMapReadyCallback {
+public class ContactFragment extends Fragment implements OnMapReadyCallback {
 
 
-    public BlankFragment() {
+    public ContactFragment() {
         // Required empty public constructor
     }
 
     private Button button;
-    private ImageView iv;
     View rootView;
     GoogleMap mMap;
 
@@ -47,18 +46,15 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback {
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
 
         button = (Button) rootView.findViewById(R.id.buttonCall);
-        //iv = (ImageView) findViewById(R.id.image_cinema);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:0658830782"));
-
-                if (ActivityCompat.checkSelfPermission(rootView.getContext(),
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+                if (ContextCompat.checkSelfPermission(rootView.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1);
+                } else {
+                    phoneCall();
                 }
-                startActivity(callIntent);
+
             }
         });
 
@@ -67,6 +63,34 @@ public class BlankFragment extends Fragment implements OnMapReadyCallback {
         // Inflate the layout for this fragment
         return rootView;
     }
+
+    public void phoneCall(){
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:0658830782"));
+        startActivity(callIntent);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    phoneCall();
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+        }
+    }
+    
     private void initializeMap() {
         if (mMap == null) {
             SupportMapFragment mapFrag = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
