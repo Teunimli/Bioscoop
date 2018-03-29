@@ -151,5 +151,4 @@ public class TicketSelectActivity extends AppCompatActivity {
     {
         //SEAT SELECT SCREEN
     }
-
 }
