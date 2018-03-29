@@ -1,8 +1,8 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -52,9 +52,7 @@ public class TicketSelectActivity extends AppCompatActivity {
         Picasso.with(this).load(selectedMovie.getPosterpath()).into(posterIv);
         titleTv.setText(selectedMovie.getTitle());
 
-
-
-        juniorTicketsEt.addTextChangedListener(new TextWatcher() {
+        TextWatcher tw = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -67,70 +65,26 @@ public class TicketSelectActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (seatsAvailable(Integer.parseInt(editable.toString()))){
-                    nrOfJuniorTickets = Integer.parseInt(editable.toString());
-                    nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
-                    updateTotalPrice();
-                }
-                else {
-                    nrOfJuniorTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected;
-                    updateTotalPrice();
-                }
-            }
-        });
-
-        normalTicketsEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (seatsAvailable(Integer.parseInt(editable.toString()))){
-                    nrOfNormalTickets = Integer.parseInt(editable.toString());
-                    nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
-                    updateTotalPrice();
-                }
-                else {
-                    nrOfNormalTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected;
-                    updateTotalPrice();
+                if(!editable.toString().equals("")) {
+                    if (seatsAvailable(Integer.parseInt(editable.toString()))) {
+                        nrOfNormalTickets = Integer.parseInt(editable.toString());
+                        nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
+                        updateTotalPrice();
+                    } else {
+                        nrOfNormalTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected;
+                        editable.clear();
+                        CharSequence seq = Integer.toString(nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected);
+                        editable.append(seq);
+                        updateTotalPrice();
+                    }
                 }
             }
-        });
-
-        seniorTicketsEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (seatsAvailable(Integer.parseInt(editable.toString()))){
-                    nrOfSeniorTickets = Integer.parseInt((editable.toString()));
-                    nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
-                    updateTotalPrice();
-                }
-                else {
-                    nrOfSeniorTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected;
-                    updateTotalPrice();
-                }
-
-            }
-        });
-
+        };
+        juniorTicketsEt.addTextChangedListener(tw);
+        normalTicketsEt.addTextChangedListener(tw);
+        seniorTicketsEt.addTextChangedListener(tw);
     }
+
 
     private boolean seatsAvailable(int extraSeats){
         if (nrOfTotalSeatsSelected + extraSeats <= nrOfTotalSeatsAvailable){

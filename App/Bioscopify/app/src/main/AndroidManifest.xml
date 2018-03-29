@@ -32,6 +32,7 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PresentationLayer.MainActivity"/>
         </activity>
+        <activity android:name=".PresentationLayer.TicketSelectActivity"/>
     </application>
 
 </manifest>
