@@ -31,6 +31,8 @@ public class TicketSelectActivity extends AppCompatActivity {
     private double nrOfNormalTickets;
     private double nrOfSeniorTickets;
     private double totalPrice;
+    private int nrOfTotalSeatsAvailable = 48;
+    private int nrOfTotalSeatsSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +65,15 @@ public class TicketSelectActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                nrOfJuniorTickets = Double.parseDouble(editable.toString());
-                updateTotalPrice();
+                if (seatsAvailable(Integer.parseInt(editable.toString()))){
+                    nrOfJuniorTickets = Double.parseDouble(editable.toString());
+                    nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
+                    updateTotalPrice();
+                }
+                else {
+                    nrOfJuniorTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected;
+                    updateTotalPrice();
+                }
             }
         });
 
@@ -81,8 +90,15 @@ public class TicketSelectActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                nrOfNormalTickets = Double.parseDouble(editable.toString());
-                updateTotalPrice();
+                if (seatsAvailable(Integer.parseInt(editable.toString()))){
+                    nrOfNormalTickets = Double.parseDouble(editable.toString());
+                    nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
+                    updateTotalPrice();
+                }
+                else {
+                    nrOfNormalTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected;
+                    updateTotalPrice();
+                }
             }
         });
 
@@ -99,11 +115,28 @@ public class TicketSelectActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                nrOfSeniorTickets = Double.parseDouble(editable.toString());
-                updateTotalPrice();
+                if (seatsAvailable(Integer.parseInt(editable.toString()))){
+                    nrOfSeniorTickets = Double.parseDouble(editable.toString());
+                    nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
+                    updateTotalPrice();
+                }
+                else {
+                    nrOfSeniorTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected;
+                    updateTotalPrice();
+                }
+
             }
         });
 
+    }
+
+    private boolean seatsAvailable(int extraSeats){
+        if (nrOfTotalSeatsSelected + extraSeats <= nrOfTotalSeatsAvailable){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     private void updateTotalPrice(){
