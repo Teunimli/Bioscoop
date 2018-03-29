@@ -25,6 +25,7 @@ public class TicketSelectActivity extends AppCompatActivity {
     private TextView totalPriceTv;
     private Button selectSeatsButton;
     private Movie selectedMovie;
+    private String time;
 
     private int nrOfJuniorTickets; // veranderen naar int
     private int nrOfNormalTickets;
@@ -40,6 +41,7 @@ public class TicketSelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ticket_select);
 
         this.selectedMovie = (Movie) getIntent().getSerializableExtra("MOVIEITEM");
+        time = (String) getIntent().getSerializableExtra("TIME");
 
         this.posterIv = (ImageView) findViewById(R.id.imageView);
         this.titleTv = (TextView) findViewById(R.id.titleTv);
@@ -47,7 +49,17 @@ public class TicketSelectActivity extends AppCompatActivity {
         this.normalTicketsEt = (EditText) findViewById(R.id.normalTicketsEt);
         this.seniorTicketsEt = (EditText) findViewById(R.id.seniorTicketsEt);
         this.totalPriceTv = (TextView) findViewById(R.id.totalPriceTv);
-        this.selectSeatsButton = (Button) findViewById(R.id.selectSeatsBtn);
+        this.selectSeatsButton = (Button) findViewById(R.id.button2);
+        selectSeatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SeatSelectActivity.class);
+                intent.putExtra("MOVIE", selectedMovie);
+                intent.putExtra("SEATS",nrOfTotalSeatsSelected);
+                intent.putExtra("PRICE", totalPrice);
+                startActivity(intent);
+            }
+        });
 
         Picasso.with(this).load(selectedMovie.getPosterpath()).into(posterIv);
         titleTv.setText(selectedMovie.getTitle());
@@ -147,13 +159,5 @@ public class TicketSelectActivity extends AppCompatActivity {
 
         String stringDouble = Double.toString(totalPrice);
         totalPriceTv.setText("€ " + stringDouble);
-    }
-
-    public void onClick(View view){
-        Intent intent = new Intent(getApplicationContext(), SeatSelectActivity.class);
-        intent.putExtra("MOVIEITEM", selectedMovie);
-        intent.putExtra("NROFSEATS",nrOfTotalSeatsSelected);
-        intent.putExtra("PRICE", totalPrice);
-        startActivity(intent);
     }
 }

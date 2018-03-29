@@ -83,6 +83,7 @@ private Movie item;
         //TICKET SELECT SCREEN
         Intent intent = new Intent(getApplicationContext(), TicketSelectActivity.class);
         intent.putExtra("MOVIEITEM", item);
+        intent.putExtra("TIME",time.getText());
         startActivity(intent);
     }
 }
