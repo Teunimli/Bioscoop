@@ -51,6 +51,15 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
         RootView = inflater.inflate(R.layout.fragment_home, container, false);
+        if(items.size() == 0)
+        {
+            getGridItems();
+        }
+        else
+        {
+            items = (ArrayList<Movie>) getActivity().getIntent().getSerializableExtra("MOVIEITEMS");
+            adapter.notifyDataSetChanged();
+        }
         getGridItems();
         gridView = (GridView) RootView.findViewById(R.id.movieListGrid2);
         adapter = new movieListAdapter(RootView.getContext(),items);
@@ -85,7 +94,9 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
         int id = item.getItemId();
 
         if (id == R.id.mybutton) {
-            Toast.makeText(getContext(), "Hoiiii", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getContext().getApplicationContext(),FilterActivity.class);
+            intent.putExtra("MOVIEITEMS",items);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

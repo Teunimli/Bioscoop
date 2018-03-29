@@ -55,7 +55,7 @@ public class FilterActivity extends AppCompatActivity {
         rdWar = (RadioButton) findViewById(R.id.rbWar);
         rdWester = (RadioButton) findViewById(R.id.rbWestern);
         btApply = (Button) findViewById(R.id.btApply);
-        movies = (ArrayList<Movie>) getIntent().getSerializableExtra("MOVIES");
+        movies = (ArrayList<Movie>) getIntent().getSerializableExtra("MOVIEITEMS");
 
         btApply.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,7 @@ public class FilterActivity extends AppCompatActivity {
 
                 }
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("MOVIEITEM", templist);
+                intent.putExtra("MOVIEITEMS", templist);
                 startActivity(intent);
             }
         });
