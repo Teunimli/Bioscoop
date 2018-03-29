@@ -35,8 +35,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PresentationLayer.MainActivity" />
         </activity>
+<<<<<<< HEAD
         <activity android:name=".PresentationLayer.TicketSelectActivity" />
         <activity android:name=".PresentationLayer.SeatSelectActivity"/>
+=======
+        <activity android:name=".PresentationLayer.TicketSelectActivity"/>
+>>>>>>> b6e71c3dd0ddc5d782c63f9b9464c1f8f5f8bdf5
     </application>
 
 </manifest>
