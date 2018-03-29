@@ -12,46 +12,28 @@ public class ConfirmationActivity extends AppCompatActivity {
     private TextView title;
     private TextView ticket;
 
+    private int SEATS;
+    private String TIME;
+    private Movie movie;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirmation_activity);
-        Movie item = (Movie) getIntent().getSerializableExtra("MOVIEITEM");
-        int position = (int)getIntent().getSerializableExtra("POSITION");
+        movie  = (Movie) getIntent().getSerializableExtra("MOVIE");
 
         time = (TextView) findViewById(R.id.time_tv);
         title = (TextView) findViewById(R.id.movietitle_tv);
-        ticket = (TextView) findViewById(R.id.ticket_tv);
+        ticket =(TextView) findViewById(R.id.ticket_tv);
 
-        title.setText(item.getTitle());
-        if (position <=3)
-        {
-            this.time.setText("10:00");
-        }
-        else if(position <=6)
-        {
-            this.time.setText("12:00");
-        }
-        else if (position <= 9)
-        {
-            this.time.setText("14:00");
-        }
-        else if (position <= 12)
-        {
-            this.time.setText("16:00");
-        }
-        else if (position <= 15)
-        {
-            this.time.setText("18:00");
-        }
-        else if (position <= 18)
-        {
-            this.time.setText("20:00");
-        }
-        else
-        {
-            this.time.setText("22:00");
-        }
+        SEATS = (int) getIntent().getSerializableExtra("SEATS");
+        TIME = (String) getIntent().getSerializableExtra("TIME");
+
+        title.setText(movie.getTitle());
+        time.setText(TIME);
+        ticket.setText(""+SEATS);
+
 
     }
 }

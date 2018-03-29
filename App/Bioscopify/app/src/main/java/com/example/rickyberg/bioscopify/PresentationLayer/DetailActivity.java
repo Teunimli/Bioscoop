@@ -25,6 +25,7 @@ private TextView language;
 private TextView genre;
 private TextView time;
 private TextView overview;
+private String TIME;
 private FloatingActionButton floatingActionButton;
 private boolean isFavorite;
 private ImageView backdropImageview;
@@ -108,9 +109,10 @@ private ImageView backdropImageview;
     public void onClick(View view)
     {
         //TICKET SELECT SCREEN
+        TIME = time.getText().toString();
         Intent intent = new Intent(getApplicationContext(), TicketSelectActivity.class);
         intent.putExtra("MOVIEITEM", item);
-        intent.putExtra("TIME",time.getText());
+        intent.putExtra("TIME",TIME);
         startActivity(intent);
 
     }

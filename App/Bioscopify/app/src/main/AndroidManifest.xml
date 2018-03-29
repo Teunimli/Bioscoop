@@ -33,7 +33,11 @@
                 android:value=".PresentationLayer.MainActivity" />
         </activity>
         <activity android:name=".PresentationLayer.TicketSelectActivity" />
-        <activity android:name=".PresentationLayer.SeatSelectActivity" />
+        <activity android:name=".PresentationLayer.SeatSelectActivity"/>
+        <activity android:name=".PresentationLayer.PayOrderActivity"/>
+        <activity android:name=".PresentationLayer.ProcessingActivity"/>
+        <activity android:name=".PresentationLayer.ConfirmationActivity"/>
+
         <activity android:name=".PresentationLayer.FilterActivity"></activity>
     </application>
 

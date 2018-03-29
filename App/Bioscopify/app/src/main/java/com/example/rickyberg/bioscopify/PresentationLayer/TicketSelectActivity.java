@@ -51,6 +51,7 @@ public class TicketSelectActivity extends AppCompatActivity {
                 intent.putExtra("MOVIE", selectedMovie);
                 intent.putExtra("SEATS",nrOfTotalTicketsSelected);
                 intent.putExtra("PRICE", totalPrice);
+                intent.putExtra("TIME", time);
                 startActivity(intent);
             }
         });
