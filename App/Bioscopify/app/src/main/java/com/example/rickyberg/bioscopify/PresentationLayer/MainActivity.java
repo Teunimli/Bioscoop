@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_about:
                 //clicked about
+                ft.replace(R.id.flMain, new AboutFragment());
+                ft.commit();
                 break;
             case R.id.nav_contact:
                 ft.replace(R.id.flMain, new BlankFragment());
