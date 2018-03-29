@@ -1,5 +1,6 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,12 +26,12 @@ public class TicketSelectActivity extends AppCompatActivity {
     private Button selectSeatsButton;
     private Movie selectedMovie;
 
-    private double nrOfJuniorTickets;
-    private double nrOfNormalTickets;
-    private double nrOfSeniorTickets;
+    private int nrOfJuniorTickets; // veranderen naar int
+    private int nrOfNormalTickets;
+    private int nrOfSeniorTickets;
     private double totalPrice;
     private int nrOfTotalSeatsAvailable = 48;
-    private int nrOfTotalSeatsSelected;
+    private int nrOfTotalSeatsSelected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class TicketSelectActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (seatsAvailable(Integer.parseInt(editable.toString()))){
-                    nrOfJuniorTickets = Double.parseDouble(editable.toString());
+                    nrOfJuniorTickets = Integer.parseInt(editable.toString());
                     nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
                     updateTotalPrice();
                 }
@@ -92,7 +93,7 @@ public class TicketSelectActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (seatsAvailable(Integer.parseInt(editable.toString()))){
-                    nrOfNormalTickets = Double.parseDouble(editable.toString());
+                    nrOfNormalTickets = Integer.parseInt(editable.toString());
                     nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
                     updateTotalPrice();
                 }
@@ -117,7 +118,7 @@ public class TicketSelectActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (seatsAvailable(Integer.parseInt(editable.toString()))){
-                    nrOfSeniorTickets = Double.parseDouble(editable.toString());
+                    nrOfSeniorTickets = Integer.parseInt((editable.toString()));
                     nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
                     updateTotalPrice();
                 }
@@ -145,12 +146,14 @@ public class TicketSelectActivity extends AppCompatActivity {
         totalPrice = nrOfJuniorTickets * 7.50 + nrOfNormalTickets * 9.00 + nrOfSeniorTickets * 8.50;
 
         String stringDouble = Double.toString(totalPrice);
-        totalPriceTv.setText(stringDouble);
+        totalPriceTv.setText("€ " + stringDouble);
     }
 
-    public void onClick(View view)
-    {
-        //SEAT SELECT SCREEN
-
+    public void onClick(View view){
+        Intent intent = new Intent(getApplicationContext(), SeatSelectActivity.class);
+        intent.putExtra("MOVIEITEM", selectedMovie);
+        intent.putExtra("NROFSEATS",nrOfTotalSeatsSelected);
+        intent.putExtra("PRICE", totalPrice);
+        startActivity(intent);
     }
 }
