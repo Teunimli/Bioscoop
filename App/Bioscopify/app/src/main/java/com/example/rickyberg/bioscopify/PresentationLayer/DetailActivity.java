@@ -19,16 +19,16 @@ public class DetailActivity extends AppCompatActivity {
     private MovieRepositoryInterface movieRepository;
     private Movie item;
     private ImageView poster;
-private TextView title;
-private TextView adult;
-private TextView language;
-private TextView genre;
-private TextView time;
-private TextView overview;
-private String TIME;
-private FloatingActionButton floatingActionButton;
-private boolean isFavorite;
-private ImageView backdropImageview;
+    private TextView title;
+    private TextView adult;
+    private TextView language;
+    private TextView genre;
+    private TextView time;
+    private TextView overview;
+    private String TIME;
+    private FloatingActionButton floatingActionButton;
+    private boolean isFavorite;
+    private ImageView backdropImageview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
