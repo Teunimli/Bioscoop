@@ -79,11 +79,13 @@ public class TicketSelectActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 if(!editable.toString().equals("")) {
                     if (seatsAvailable(Integer.parseInt(editable.toString()))) {
-                        nrOfNormalTickets = Integer.parseInt(editable.toString());
-                        nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
+
+                        //  nrOfNormalTickets = Integer.parseInt(editable.toString());
+                        //  nrOfTotalSeatsSelected += Integer.parseInt(editable.toString());
+                        updateTickets();
                         updateTotalPrice();
                     } else {
-                        nrOfNormalTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected;
+                       // nrOfNormalTickets = nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected; // AANPASSEN
                         editable.clear();
                         CharSequence seq = Integer.toString(nrOfTotalSeatsAvailable - nrOfTotalSeatsSelected);
                         editable.append(seq);
@@ -95,6 +97,14 @@ public class TicketSelectActivity extends AppCompatActivity {
         juniorTicketsEt.addTextChangedListener(tw);
         normalTicketsEt.addTextChangedListener(tw);
         seniorTicketsEt.addTextChangedListener(tw);
+    }
+
+    private void updateTickets(){
+        nrOfJuniorTickets = Integer.parseInt(juniorTicketsEt.getText().toString());
+        nrOfNormalTickets = Integer.parseInt(normalTicketsEt.getText().toString());
+        nrOfSeniorTickets = Integer.parseInt(seniorTicketsEt.getText().toString());
+
+        nrOfTotalSeatsSelected = nrOfJuniorTickets + nrOfNormalTickets + nrOfSeniorTickets;
     }
 
 
