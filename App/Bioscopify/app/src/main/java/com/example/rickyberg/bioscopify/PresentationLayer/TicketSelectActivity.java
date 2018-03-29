@@ -1,8 +1,7 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
-
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import com.example.rickyberg.bioscopify.DomainLayer.Movie;
 import com.example.rickyberg.bioscopify.R;
 import com.squareup.picasso.Picasso;
-
 
 public class TicketSelectActivity extends AppCompatActivity {
 
@@ -36,8 +34,11 @@ public class TicketSelectActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_ticket_select);
+
+        this.selectedMovie = (Movie) getIntent().getSerializableExtra("MOVIEITEM");
 
         this.posterIv = (ImageView) findViewById(R.id.imageView);
         this.titleTv = (TextView) findViewById(R.id.titleTv);
@@ -150,5 +151,6 @@ public class TicketSelectActivity extends AppCompatActivity {
     public void onClick(View view)
     {
         //SEAT SELECT SCREEN
+
     }
 }
