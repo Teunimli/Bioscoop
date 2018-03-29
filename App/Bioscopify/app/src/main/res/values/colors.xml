@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#2d2d2d</color>
     <color name="colorAccent">#d10000</color>
     <color name="colorWhite">#F2F2F2</color>
+    <color name="clickedSeat">#814f00</color>
+    <color name="notClickedSeat">#fdfcfa</color>
+    <color name="lastCLickedSeat">#fbdcbb</color>
 </resources>
