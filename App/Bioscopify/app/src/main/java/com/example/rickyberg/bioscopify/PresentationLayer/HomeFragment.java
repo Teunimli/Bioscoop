@@ -17,8 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.rickyberg.bioscopify.ApplicationLayer.MovieItemListener;
 import com.example.rickyberg.bioscopify.DataAccessLayer.MovieAsyncTask;
@@ -76,16 +78,16 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.action_bar_spinner_menu, menu);
-        MenuItem item = menu.findItem(R.id.spinner);
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
-        spinner.getBackground().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(RootView.getContext(),
-                R.array.spinner_array, R.layout.spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
+        if (id == R.id.mybutton) {
+            Toast.makeText(getContext(), "Hoiiii", Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
