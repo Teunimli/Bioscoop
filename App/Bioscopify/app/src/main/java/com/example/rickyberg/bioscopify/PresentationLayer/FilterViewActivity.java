@@ -49,8 +49,8 @@ public class FilterViewActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home/back button
             case android.R.id.home:
-                Intent intentHome = new Intent(getApplicationContext(), HomeFragment.class);
-                startActivity(intentHome);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.mybutton:
                 finish();

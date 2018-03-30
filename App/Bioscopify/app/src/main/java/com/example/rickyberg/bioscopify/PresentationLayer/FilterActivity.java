@@ -81,24 +81,26 @@ public class FilterActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
-                ArrayList<Movie> templist = new ArrayList<>();
-                for (Movie movie : movies) {
-                    if (selectedGenres.isEmpty()) {
-                        templist = null;
-                    } else {
-                        for (int i = 0; i < selectedGenres.size(); i++) {
+                else {
+                    ArrayList<Movie> templist = new ArrayList<>();
+                    for (Movie movie : movies) {
+                        if (selectedGenres.isEmpty()) {
+                            templist = null;
+                        } else {
+                            for (int i = 0; i < selectedGenres.size(); i++) {
 
-                            if (movie.getGenre().contains(selectedGenres.get(i))) {
-                                if (!templist.contains(movie)) {
-                                    templist.add(movie);
+                                if (movie.getGenre().contains(selectedGenres.get(i))) {
+                                    if (!templist.contains(movie)) {
+                                        templist.add(movie);
+                                    }
                                 }
                             }
                         }
                     }
+                    Intent intent = new Intent(getApplicationContext(), FilterViewActivity.class);
+                    intent.putExtra("MOVIEITEMS", templist);
+                    startActivity(intent);
                 }
-                Intent intent = new Intent(getApplicationContext(), FilterViewActivity.class);
-                intent.putExtra("MOVIEITEMS", templist);
-                startActivity(intent);
             }
         });
     }
