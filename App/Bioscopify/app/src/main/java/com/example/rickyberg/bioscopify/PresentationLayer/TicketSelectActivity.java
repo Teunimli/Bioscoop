@@ -27,119 +27,109 @@ public class TicketSelectActivity extends AppCompatActivity {
     private Movie selectedMovie;
     private String time;
 
-    private ArrayAdapter<String> adapter;
-    private ArrayAdapter<String> adapter2;
-    private ArrayAdapter<String> adapter3;
-    private int check = 0;
+    private ArrayAdapter<Integer> adapterJunior;
+    private ArrayAdapter<Integer> adapterNormal;
+    private ArrayAdapter<Integer> adapterSenior;
+    private ArrayList<Integer> ticketsJunior;
+    private ArrayList<Integer> ticketsNormal;
+    private ArrayList<Integer> ticketsSenior;
+    private double totalPrice;
+    private final int MAXIMUM_TICKETS = 12;
+    private int amountOfTicketsSelected = 0;
+    private int ticketsAvailable;
     private Spinner spinJuniorTickets;
     private Spinner spinNormalTickets;
     private Spinner spinSeniorTickets;
-    private ArrayList<String> ticketList;
-    private double totalPrice;
-    private int nrOfTotalSeatsAvailable = 12;
-    private int nrOfTotalTicketsSelected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_select);
-
-        this.selectedMovie = (Movie) getIntent().getSerializableExtra("MOVIEITEM");
+        selectedMovie = (Movie) getIntent().getSerializableExtra("MOVIEITEM");
         time = (String) getIntent().getSerializableExtra("TIME");
-
-        this.ticketList = new ArrayList<>();
-        this.posterIv = (ImageView) findViewById(R.id.imageView);
-        this.titleTv = (TextView) findViewById(R.id.titleTv);
-        this.totalPriceTv = (TextView) findViewById(R.id.totalPriceTv);
-        this.selectSeatsButton = (Button) findViewById(R.id.btnTicketSelect);
-        this.spinJuniorTickets = (Spinner) findViewById(R.id.spinTicketJunior);
-        this.spinNormalTickets = (Spinner) findViewById(R.id.spinTicketNormal);
-        this.spinSeniorTickets = (Spinner) findViewById(R.id.spinTicketSenior);
+        posterIv = (ImageView) findViewById(R.id.imageView);
+        titleTv = (TextView) findViewById(R.id.titleTv);
+        totalPriceTv = (TextView) findViewById(R.id.totalPriceTv);
+        selectSeatsButton = (Button) findViewById(R.id.btnTicketSelect);
         selectSeatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SeatSelectActivity.class);
                 intent.putExtra("MOVIE", selectedMovie);
-                intent.putExtra("SEATS", 1);
-                intent.putExtra("PRICE", totalPrice);
+                intent.putExtra("SEATS", getAmountOfTicketsSelected());
+                intent.putExtra("PRICE", getPrice());
                 intent.putExtra("TIME", time);
                 startActivity(intent);
             }
         });
-        fillSpinner(nrOfTotalSeatsAvailable);
-        adapter = new ArrayAdapter<String>(
-                getApplicationContext(), android.R.layout.simple_spinner_item, ticketList);
-        adapter2 = new ArrayAdapter<String>(
-                getApplicationContext(), android.R.layout.simple_spinner_item, ticketList);
-        adapter3 = new ArrayAdapter<String>(
-                getApplicationContext(), android.R.layout.simple_spinner_item, ticketList);
-        spinJuniorTickets.setAdapter(adapter);
-        spinNormalTickets.setAdapter(adapter2);
-        spinSeniorTickets.setAdapter(adapter3);
-
-        final ArrayList<Spinner> spinners = new ArrayList<>();
-
         Picasso.with(this).load(selectedMovie.getPosterpath()).into(posterIv);
         titleTv.setText(selectedMovie.getTitle());
 
-        AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        //ticket selection
+        spinJuniorTickets = (Spinner) findViewById(R.id.spinTicketJunior);
+        spinNormalTickets = (Spinner) findViewById(R.id.spinTicketNormal);
+        spinSeniorTickets = (Spinner) findViewById(R.id.spinTicketSenior);
+        ticketsJunior = getList(12);
+        ticketsNormal = getList(12);
+        ticketsSenior = getList(12);
+        adapterJunior = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, ticketsJunior);
+        adapterNormal = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, ticketsNormal);
+        adapterSenior = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, ticketsSenior);
+        spinJuniorTickets.setAdapter(adapterJunior);
+        spinNormalTickets.setAdapter(adapterNormal);
+        spinSeniorTickets.setAdapter(adapterSenior);
 
-                if (++check > 3) {
-                    Spinner spin = (Spinner) adapterView;
-                    int x = Integer.parseInt(spin.getSelectedItem().toString());
+         AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
+             @Override
+             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                 totalPriceTv.setText("€ " + getPrice() + "0");
+             }
 
-                    fillSpinner(nrOfTotalSeatsAvailable - x);
-                    updateSeats();
+             @Override
+             public void onNothingSelected(AdapterView<?> adapterView) {
 
-
-                        switch (adapterView.getId()) {
-                            case R.id.spinTicketJunior:
-                                adapter2.notifyDataSetChanged();
-                                adapter3.notifyDataSetChanged();
-                                break;
-                            case R.id.spinTicketNormal:
-                                adapter.notifyDataSetChanged();
-                                adapter3.notifyDataSetChanged();
-                                break;
-                            case R.id.spinTicketSenior:
-                                adapter2.notifyDataSetChanged();
-                                adapter.notifyDataSetChanged();
-                                break;
-                        }
-                    }
-
-                    Log.i("================", "seats: " + nrOfTotalSeatsAvailable);
-                    Log.i("================", "event ran: " + check);
-                }
-
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        };
+             }
+         };
         spinJuniorTickets.setOnItemSelectedListener(listener);
         spinNormalTickets.setOnItemSelectedListener(listener);
         spinSeniorTickets.setOnItemSelectedListener(listener);
 
     }
 
-    private void updateSeats()
+    public double getPrice()
     {
-        nrOfTotalSeatsAvailable = Integer.parseInt(spinJuniorTickets.getSelectedItem().toString()) -
-                Integer.parseInt(spinNormalTickets.getSelectedItem().toString()) -
-                Integer.parseInt(spinSeniorTickets.getSelectedItem().toString());
+        if(spinJuniorTickets.getSelectedItem() != null && spinNormalTickets.getSelectedItem() != null && spinSeniorTickets.getSelectedItem() != null) {
+            totalPrice =
+                            (Integer.parseInt(spinJuniorTickets.getSelectedItem().toString()) * 7.5) +
+                            (Integer.parseInt(spinNormalTickets.getSelectedItem().toString()) * 9.0) +
+                            (Integer.parseInt(spinSeniorTickets.getSelectedItem().toString()) * 8.5) ;
+            return totalPrice;
+        }
+        return 0;
     }
 
-    private void fillSpinner(int amount) {
-        ticketList.clear();
-        for (int i = 0; i < amount + 1; i++) {
-            ticketList.add("" + i);
+
+    public int getAmountOfTicketsSelected() {
+        if(spinJuniorTickets.getSelectedItem() != null && spinNormalTickets.getSelectedItem() != null && spinSeniorTickets.getSelectedItem() != null) {
+            amountOfTicketsSelected = Integer.parseInt(spinJuniorTickets.getSelectedItem().toString()) +
+                    Integer.parseInt(spinNormalTickets.getSelectedItem().toString()) +
+                    Integer.parseInt(spinSeniorTickets.getSelectedItem().toString());
         }
+        else
+        {
+            amountOfTicketsSelected = 0;
+        }
+        return amountOfTicketsSelected;
+    }
+
+
+    public ArrayList<Integer> getList(int amount){
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        for (int i = 0; i < amount + 1; i++) {
+            temp.add(i);
+        }
+        return temp;
     }
 
 }

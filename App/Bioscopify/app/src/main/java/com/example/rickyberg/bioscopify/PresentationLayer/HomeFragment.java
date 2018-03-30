@@ -54,18 +54,8 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
         RootView = inflater.inflate(R.layout.fragment_home, container, false);
         gridView = (GridView) RootView.findViewById(R.id.movieListGrid2);
         getGridItems();
-        if ((ArrayList<Movie>) getActivity().getIntent().getSerializableExtra("MOVIEITEMS") == null )
-        {
-            adapter = new movieListAdapter(RootView.getContext(),items);
-            gridView.setAdapter(adapter);
-        }
-        else
-        {
-            ArrayList<Movie> filterd = new ArrayList<>();
-            filterd = (ArrayList<Movie>) getActivity().getIntent().getSerializableExtra("MOVIEITEMS");
-            ArrayAdapter<Movie> adap = new movieListAdapter(RootView.getContext(),filterd);
-            gridView.setAdapter(adap);
-        }
+        adapter = new movieListAdapter(RootView.getContext(),items);
+        gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
