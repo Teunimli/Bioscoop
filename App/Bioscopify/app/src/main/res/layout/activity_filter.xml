@@ -23,7 +23,7 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/layoutconstraint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="0dp">
 
@@ -49,9 +49,7 @@
                 android:id="@+id/rbAdventure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:text="Adventure"
-                app:layout_constraintEnd_toStartOf="@+id/rbCrime"
                 app:layout_constraintStart_toStartOf="@+id/rbAction"
                 app:layout_constraintTop_toBottomOf="@+id/rbAction" />
 
@@ -61,9 +59,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:text="Action"
                 app:layout_constraintEnd_toStartOf="@+id/rbComedy"
+                app:layout_constraintHorizontal_bias="0.114"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGenre" />
 
@@ -94,17 +93,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:text="Animation"
                 app:layout_constraintEnd_toStartOf="@+id/rbDocumentary"
-                app:layout_constraintStart_toStartOf="@+id/rbAdventure"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rbAdventure" />
 
             <RadioButton
                 android:id="@+id/rbComedy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="64dp"
                 android:text="Comedy"
                 app:layout_constraintStart_toStartOf="@+id/rbCrime"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -113,17 +112,19 @@
                 android:id="@+id/rbCrime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginStart="8dp"
                 android:text="Crime"
                 app:layout_constraintEnd_toStartOf="@+id/rbFamily"
-                app:layout_constraintStart_toStartOf="@+id/rbDocumentary"
+                app:layout_constraintHorizontal_bias="0.677"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rbComedy" />
 
             <RadioButton
                 android:id="@+id/rbDocumentary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:text="Documentary"
                 app:layout_constraintEnd_toStartOf="@+id/rbFantasy"
                 app:layout_constraintTop_toBottomOf="@+id/rbCrime" />
@@ -188,27 +189,35 @@
                 android:id="@+id/rbWar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="20dp"
                 android:text="War"
                 app:layout_constraintStart_toEndOf="@+id/rbScience"
-                tools:layout_editor_absoluteY="171dp" />
+                tools:layout_editor_absoluteY="170dp" />
 
             <RadioButton
                 android:id="@+id/rbWestern"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="68dp"
                 android:text="Western"
                 app:layout_constraintStart_toEndOf="@+id/rbThriller"
-                tools:layout_editor_absoluteY="203dp" />
+                tools:layout_editor_absoluteY="202dp" />
 
             <Button
                 android:id="@+id/btApply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="400dp"
                 android:text="Apply"
-                tools:layout_editor_absoluteX="128dp"
-                tools:layout_editor_absoluteY="287dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.36"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/tvReset"

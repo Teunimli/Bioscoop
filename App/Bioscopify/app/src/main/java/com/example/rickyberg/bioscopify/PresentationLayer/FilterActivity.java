@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 
@@ -32,6 +33,7 @@ public class FilterActivity extends AppCompatActivity {
     private RadioButton rdWester;
     private Button btApply;
     private ArrayList<Movie> movies;
+    private ArrayList<String> genres = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,18 +63,25 @@ public class FilterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ArrayList<Movie> templist = new ArrayList<>();
-                ArrayList<String> genres = getGenres();
+                getGenres();
                 for (Movie movie : movies) {
-                    for (int i = 0; i < genres.size(); i++) {
-                        if(movie.getGenre().contains(genres.get(i)))
-                        {
-                            if (!templist.contains(movie))
+                    if (genres.isEmpty())
+                    {
+                        templist = null;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < genres.size(); i++) {
+
+                            if(movie.getGenre().contains(genres.get(i)))
                             {
-                                templist.add(movie);
+                                if (!templist.contains(movie))
+                                {
+                                    templist.add(movie);
+                                }
                             }
                         }
                     }
-
                 }
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("MOVIEITEMS", templist);
@@ -82,35 +91,30 @@ public class FilterActivity extends AppCompatActivity {
     }
     public ArrayList<String> getGenres()
     {
-        ArrayList<String> genres = new ArrayList<>();
-        genres.add(checkRadio(rdAction));
-        genres.add(checkRadio(rdAdvernture));
-        genres.add(checkRadio(rdAnimation));
-        genres.add(checkRadio(rdComedy));
-        genres.add(checkRadio(rdCrime));
-        genres.add(checkRadio(rdDocumentary));
-        genres.add(checkRadio(rdDrama));
-        genres.add(checkRadio(rdFamily));
-        genres.add(checkRadio(rdFantasy));
-        genres.add(checkRadio(rdHistory));
-        genres.add(checkRadio(rdMystery));
-        genres.add(checkRadio(rdRomance));
-        genres.add(checkRadio(rdScience));
-        genres.add(checkRadio(rdTvMovie));
-        genres.add(checkRadio(rdThriller));
-        genres.add(checkRadio(rdWar));
-        genres.add(checkRadio(rdWester));
+        checkRadio(rdAction);
+        checkRadio(rdAdvernture);
+        checkRadio(rdAnimation);
+        checkRadio(rdComedy);
+        checkRadio(rdCrime);
+        checkRadio(rdDocumentary);
+        checkRadio(rdDrama);
+        checkRadio(rdFamily);
+        checkRadio(rdFantasy);
+        checkRadio(rdHistory);
+        checkRadio(rdMystery);
+        checkRadio(rdRomance);
+        checkRadio(rdScience);
+        checkRadio(rdTvMovie);
+        checkRadio(rdThriller);
+        checkRadio(rdWar);
+        checkRadio(rdWester);
         return genres;
     }
-    public String checkRadio(RadioButton radioButton)
+    public void checkRadio(RadioButton radioButton)
     {
         if (radioButton.isChecked() == true)
         {
-            return radioButton.getText().toString();
-        }
-        else
-        {
-            return "";
+            genres.add(radioButton.getText().toString());
         }
     }
 }
