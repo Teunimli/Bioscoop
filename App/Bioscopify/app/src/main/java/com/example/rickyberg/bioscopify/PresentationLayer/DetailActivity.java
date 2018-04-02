@@ -61,8 +61,24 @@ public class DetailActivity extends AppCompatActivity {
         {
             adult.setText("Age: All");
         }
-        language.setText(item.getLanguage());
-        genre.setText(item.getGenre().toString());
+        switch (item.getLanguage())
+        {
+            case "en":
+                language.setText("Spoken: English");
+                break;
+                case "nl":
+                    language.setText("Spoken: Dutch");
+                    break;
+
+        }
+        String genreString = "Genres: ";
+        for (int i = 0; i < item.getGenre().size(); i++) {
+            if (i == item.getGenre().size() - 1)
+                genreString += "" + item.getGenre().get(i);
+            else
+                genreString += "" + item.getGenre().get(i) + ", ";
+        }
+        genre.setText(genreString);
         if (position <=3)
         {
             time.setText("10:00");
