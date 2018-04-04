@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.example.rickyberg.bioscopify.PresentationLayer.PayOrderActivity"
     tools:layout_editor_absoluteY="81dp">
 
@@ -23,10 +24,12 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="20dp"
             android:text="Choose your payment method"
             android:textAlignment="center"
+            android:textColor="@color/colorWhite"
             android:textSize="25sp" />
 
         <ImageView
@@ -65,8 +68,10 @@
             android:layout_alignTop="@+id/ideal_iv"
             android:layout_marginEnd="34dp"
             android:layout_marginTop="11dp"
+            android:background="@color/colorAccent"
             android:onClick="PaymentClick"
-            android:text="IDeal" />
+            android:text="IDeal"
+            android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/paypal_btn"
@@ -74,9 +79,11 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/Mastercard_btn"
             android:layout_alignTop="@+id/paypal_iv"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/colorAccent"
             android:onClick="PaymentClick"
-            android:text="PayPal" />
+            android:text="PayPal"
+            android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/Mastercard_btn"
@@ -85,8 +92,10 @@
             android:layout_alignStart="@+id/ideal_btn"
             android:layout_alignTop="@+id/mastercard_iv"
             android:layout_marginTop="13dp"
+            android:background="@color/colorAccent"
             android:onClick="PaymentClick"
-            android:text="Mastercard" />
+            android:text="Mastercard"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/movietitle_tv"
@@ -95,7 +104,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="65dp"
-            android:text="Movie" />
+            android:text="Movie"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/ticket_tv"
@@ -104,7 +114,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="92dp"
-            android:text="Tickets" />
+            android:text="Tickets"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/total_tv"
@@ -113,7 +124,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="145dp"
-            android:text="Total" />
+            android:text="Total"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/time_tv"
@@ -122,6 +134,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="118dp"
-            android:text="Time" />
+            android:text="Time"
+            android:textColor="@color/colorWhite" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

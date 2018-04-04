@@ -2,13 +2,10 @@ package com.example.rickyberg.bioscopify.PresentationLayer;
 
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,10 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.rickyberg.bioscopify.ApplicationLayer.MovieItemListener;
 import com.example.rickyberg.bioscopify.DataAccessLayer.MovieAsyncTask;
@@ -71,7 +65,7 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
     {
         //Aanroepen AsyncTask
         MovieAsyncTask task = new MovieAsyncTask(this);
-        String[] urls = new String[] {"https://api.themoviedb.org/3/movie/now_playing?api_key=8089749884abc3ed32377451b7e348fd&language=nl-NL&page=1&region=NL"};
+        String[] urls = new String[] {"https://api.themoviedb.org/3/movie/now_playing?api_key=8089749884abc3ed32377451b7e348fd&language=en-EN&page=1&region=NL"};
         task.execute(urls);
     }
 

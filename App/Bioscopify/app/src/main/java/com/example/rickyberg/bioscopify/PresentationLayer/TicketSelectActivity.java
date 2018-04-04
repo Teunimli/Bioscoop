@@ -1,16 +1,18 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rickyberg.bioscopify.DomainLayer.Movie;
 import com.example.rickyberg.bioscopify.R;
@@ -55,12 +57,18 @@ public class TicketSelectActivity extends AppCompatActivity {
         selectSeatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SeatSelectActivity.class);
-                intent.putExtra("MOVIE", selectedMovie);
-                intent.putExtra("SEATS", getAmountOfTicketsSelected());
-                intent.putExtra("PRICE", getPrice());
-                intent.putExtra("TIME", time);
-                startActivity(intent);
+                if(getAmountOfTicketsSelected() != 0) {
+                    Intent intent = new Intent(getApplicationContext(), SeatSelectActivity.class);
+                    intent.putExtra("MOVIE", selectedMovie);
+                    intent.putExtra("SEATS", getAmountOfTicketsSelected());
+                    intent.putExtra("PRICE", getPrice());
+                    intent.putExtra("TIME", time);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Please select a ticket", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         Picasso.with(this).load(selectedMovie.getPosterpath()).into(posterIv);
@@ -76,6 +84,32 @@ public class TicketSelectActivity extends AppCompatActivity {
         adapterJunior = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, ticketsJunior);
         adapterNormal = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, ticketsNormal);
         adapterSenior = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, ticketsSenior);
+
+
+        spinJuniorTickets.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                ((TextView) spinJuniorTickets.getSelectedView()).setTextColor(getResources().getColor(R.color.colorWhite));
+            }
+        });
+
+        spinNormalTickets.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                ((TextView) spinNormalTickets.getSelectedView()).setTextColor(getResources().getColor(R.color.colorWhite));
+            }
+        });
+
+        spinSeniorTickets.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                ((TextView) spinSeniorTickets.getSelectedView()).setTextColor(getResources().getColor(R.color.colorWhite));
+            }
+        });
+
+        spinJuniorTickets.getBackground().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+        spinNormalTickets.getBackground().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+        spinSeniorTickets.getBackground().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
         spinJuniorTickets.setAdapter(adapterJunior);
         spinNormalTickets.setAdapter(adapterNormal);
         spinSeniorTickets.setAdapter(adapterSenior);

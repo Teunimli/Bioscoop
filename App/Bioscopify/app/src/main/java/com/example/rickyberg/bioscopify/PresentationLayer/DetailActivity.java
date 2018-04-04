@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.rickyberg.bioscopify.ApplicationLayer.RandomMovieDate;
 import com.example.rickyberg.bioscopify.DataAccessLayer.MovieRepositoryInterface;
 import com.example.rickyberg.bioscopify.DataAccessLayer.MovieRepositorySQL;
 import com.example.rickyberg.bioscopify.DomainLayer.Movie;
@@ -25,6 +26,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView genre;
     private TextView time;
     private TextView overview;
+    private TextView day;
     private String TIME;
     private FloatingActionButton floatingActionButton;
     private boolean isFavorite;
@@ -44,6 +46,7 @@ public class DetailActivity extends AppCompatActivity {
         genre = (TextView) findViewById(R.id.genreTv);
         time = (TextView) findViewById(R.id.movietimeTV);
         overview = (TextView) findViewById(R.id.overviewTv);
+        day = (TextView) findViewById(R.id.tvDay);
         backdropImageview = (ImageView) findViewById(R.id.ivBackdropDetailed);
         Picasso.with(this).load(item.getPosterpath()).into(poster);
         if(!item.getBackdrop().equals("noimage"))
@@ -79,8 +82,12 @@ public class DetailActivity extends AppCompatActivity {
                 genreString += "" + item.getGenre().get(i) + ", ";
         }
         genre.setText(genreString);
+        RandomMovieDate movieDate = new RandomMovieDate();
         if (position <=3)
         {
+            if (movieDate.hasTimePassed("10:00"))
+                day.setText("Tomorrow");
+
             time.setText("10:00");
         }
         else if(position <=6)

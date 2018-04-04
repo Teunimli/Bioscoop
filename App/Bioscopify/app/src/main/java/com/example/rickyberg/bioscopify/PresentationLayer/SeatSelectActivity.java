@@ -1,9 +1,10 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,9 +48,17 @@ public class SeatSelectActivity extends AppCompatActivity {
         price = (double) getIntent().getSerializableExtra("PRICE");
         time = (String) getIntent().getSerializableExtra("TIME");
         seats.setText("Choose "+seatCount+" seats");
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,numbers);
         gridView = (GridView) findViewById(R.id.gbSeatSelect);
-        gridView.setAdapter(adapter);
+        gridView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, numbers) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(getResources().getColor(R.color.colorWhite));
+                return view;
+            }
+        });
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -60,7 +69,8 @@ public class SeatSelectActivity extends AppCompatActivity {
                     TextView GridViewItems = (TextView) view;
                     if (GridViewItems.getText().toString().contains("."))
                     {
-                        GridViewItems.setBackgroundResource(R.color.notClickedSeat);
+                        GridViewItems.setTextColor(getResources().getColor(R.color.colorWhite));
+                        GridViewItems.setBackgroundResource(R.color.colorPrimary);
 
                         int text = i++;
                         GridViewItems.setText(""+i);
@@ -70,7 +80,8 @@ public class SeatSelectActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        GridViewItems.setBackgroundResource(R.color.clickedSeat);
+                        GridViewItems.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                        GridViewItems.setBackgroundResource(R.color.colorWhite);
 
                         GridViewItems.setText(GridViewItems.getText()+".");
                         seatCount--;
@@ -84,7 +95,8 @@ public class SeatSelectActivity extends AppCompatActivity {
 
                     TextView GridViewItems = (TextView) view;
                     if (GridViewItems.getText().toString().contains(".")) {
-                        GridViewItems.setBackgroundResource(R.color.notClickedSeat);
+                        GridViewItems.setTextColor(getResources().getColor(R.color.colorWhite));
+                        GridViewItems.setBackgroundResource(R.color.colorPrimary);
                         int text = i++;
                         GridViewItems.setText("" + i);
                         seatCount++;

@@ -1,19 +1,14 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
 
 import com.example.rickyberg.bioscopify.DomainLayer.Genre;
 import com.example.rickyberg.bioscopify.DomainLayer.Movie;
@@ -127,5 +122,9 @@ public class FilterActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

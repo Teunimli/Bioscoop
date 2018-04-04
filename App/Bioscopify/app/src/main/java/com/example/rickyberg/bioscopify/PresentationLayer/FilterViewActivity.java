@@ -1,17 +1,15 @@
 package com.example.rickyberg.bioscopify.PresentationLayer;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ListView;
 
-import com.example.rickyberg.bioscopify.DomainLayer.Genre;
 import com.example.rickyberg.bioscopify.DomainLayer.Movie;
 import com.example.rickyberg.bioscopify.R;
 
@@ -21,7 +19,6 @@ public class FilterViewActivity extends AppCompatActivity {
 
     private GridView gvResult;
     private ArrayList<Movie> filtered;
-    private ArrayList<String> genres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +33,16 @@ public class FilterViewActivity extends AppCompatActivity {
         filtered = (ArrayList<Movie>) getIntent().getSerializableExtra("MOVIEITEMS");
         ArrayAdapter<Movie> adapter = new movieListAdapter(this, filtered);
         gvResult.setAdapter(adapter);
+
+        gvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
+                intent.putExtra("MOVIEITEM",filtered.get(i));
+                intent.putExtra("POSITION",i);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,5 +65,11 @@ public class FilterViewActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 }
