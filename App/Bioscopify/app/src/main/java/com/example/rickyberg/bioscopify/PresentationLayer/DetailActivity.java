@@ -16,6 +16,9 @@ import com.example.rickyberg.bioscopify.DomainLayer.Movie;
 import com.example.rickyberg.bioscopify.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 public class DetailActivity extends AppCompatActivity {
     private MovieRepositoryInterface movieRepository;
     private Movie item;
@@ -85,33 +88,45 @@ public class DetailActivity extends AppCompatActivity {
         RandomMovieDate movieDate = new RandomMovieDate();
         if (position <=3)
         {
-            if (movieDate.hasTimePassed("10:00"))
+            if (movieDate.hasTimePassed(Calendar.getInstance(Locale.FRANCE), "10:00"))
                 day.setText("Tomorrow");
 
             time.setText("10:00");
         }
         else if(position <=6)
         {
+            if (movieDate.hasTimePassed(Calendar.getInstance(Locale.FRANCE), "12:00"))
+                day.setText("Tomorrow");
             time.setText("12:00");
         }
         else if (position <= 9)
         {
+            if (movieDate.hasTimePassed(Calendar.getInstance(Locale.FRANCE), "14:00"))
+                day.setText("Tomorrow");
             time.setText("14:00");
         }
         else if (position <= 12)
         {
+            if (movieDate.hasTimePassed(Calendar.getInstance(Locale.FRANCE), "16:00"))
+                day.setText("Tomorrow");
             time.setText("16:00");
         }
         else if (position <= 15)
         {
+            if (movieDate.hasTimePassed(Calendar.getInstance(Locale.FRANCE), "18:00"))
+                day.setText("Tomorrow");
             time.setText("18:00");
         }
         else if (position <= 18)
         {
+            if (movieDate.hasTimePassed(Calendar.getInstance(Locale.FRANCE), "20:00"))
+                day.setText("Tomorrow");
             time.setText("20:00");
         }
         else
         {
+            if (movieDate.hasTimePassed(Calendar.getInstance(Locale.FRANCE), "22:00"))
+                day.setText("Tomorrow");
             time.setText("22:00");
         }
         overview.setText(item.getOverview());
